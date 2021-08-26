@@ -1,0 +1,10 @@
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\bin\Debug\Serial_Terminal_plus.exe.config
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\bin\Debug\Serial_Terminal_plus.exe
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\bin\Debug\Serial_Terminal_plus.pdb
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.csprojAssemblyReference.cache
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.Form1.resources
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.Properties.Resources.resources
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.csproj.GenerateResource.cache
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.csproj.CoreCompileInputs.cache
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.exe
+C:\Users\tommy\source\repos\Serial_Terminal_plus\Serial_Terminal_plus\obj\Debug\Serial_Terminal_plus.pdb
