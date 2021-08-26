@@ -143,8 +143,10 @@ namespace Serial_Terminal_plus
             // tboxReceivedText
             // 
             this.tboxReceivedText.Location = new System.Drawing.Point(18, 300);
+            this.tboxReceivedText.MaxLength = 307199;
             this.tboxReceivedText.Multiline = true;
             this.tboxReceivedText.Name = "tboxReceivedText";
+            this.tboxReceivedText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tboxReceivedText.Size = new System.Drawing.Size(841, 402);
             this.tboxReceivedText.TabIndex = 10;
             // 
