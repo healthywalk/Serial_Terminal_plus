@@ -1,6 +1,6 @@
 # Serial_Terminal_plus
 
-### Serial terminal app with custom buttons for Windows PC  
+### Serial terminal app for Windows PC with custom buttons  
 You can use this app instead of the terminal emulator "Tera Term".
 
 * You can register frequently used transmission character strings in the button and send the character string by clicking the button.
