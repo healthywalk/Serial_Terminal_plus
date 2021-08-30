@@ -18,7 +18,7 @@ You can use this app instead of the terminal emulator "Tera Term".
 
 ### How to download
 
-* Open the URL https://github.com/healthywalk/Serial_Terminal_plus](https://github.com/healthywalk/Serial_Terminal_plus)
+* Open the URL [https://github.com/healthywalk/Serial_Terminal_plus/](https://github.com/healthywalk/Serial_Terminal_plus/)
 * Select "Download Zip" from the green button labeled "code".
 * "Serial_Terminal_plus-main.zip" will be downloaded, so unzip it.
 * You will find "Serial_Terminal_plus.exe" in Serial_Terminal_plus-main \ Serial_Terminal_plus \ bin \ Release.
