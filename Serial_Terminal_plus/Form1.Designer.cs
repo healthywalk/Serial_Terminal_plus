@@ -31,6 +31,7 @@ namespace Serial_Terminal_plus
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbPortName = new System.Windows.Forms.ComboBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.cmbBaudRate = new System.Windows.Forms.ComboBox();
@@ -255,6 +256,8 @@ namespace Serial_Terminal_plus
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.cmbBaudRate);
             this.Controls.Add(this.cmbPortName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Serial Terminal plus";
             this.ResumeLayout(false);
