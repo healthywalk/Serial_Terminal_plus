@@ -1,25 +1,38 @@
 # Serial_Terminal_plus
 
-### ちょっと良いシリアルターミナルアプリ
+### Serial terminal app with custom buttons for Windows PC  
+You can use this app instead of the terminal emulator "Tera Term".
 
-* 受信時にタイムスタンプを行頭に付けることができます。
-* 送信文字列をローカルエコーとして受信内容に含めることができます。
-* 送信文字列をボタンに登録しておいて，ボタンクリックで登録された文字列を送信できます。
-* 各ボタンへの文字列の登録は，SHIFT+クリックでできます。
-* 登録できるボタン数は36です。
-* 受信内容をテキストファイルに保存できます。
+* You can register frequently used transmission character strings in the button and send the character string by clicking the button.
+* You can register a character string for each button by pressing SHIFT + click.
+* The number of buttons that can be registered is 36.
+* You can add a timestamp to the beginning of the line when receiving.
+* The transmitted string can be included in the received content as a local echo.
+* You can save the received contents to a text file.
 
-### 使い道
+### Convenient usage
 
-* このアプリはMicrobitとの通信のために作成されました。
-* Microbitプログラム作成者がコマンドを決めておいて，各コマンドに対してMicrobitに既定の動作をさせるときに便利です。リモコン操作のようになります。
-* Microbitだけでなく，他のマイコンシステムでも使えます。
+* This app was created for communication between Windows PC and Microbit.
+* This is useful for Microbit program developers to predetermine multiple commands and have Microbit perform the default behavior for those commands. It will be like a remote control operation.
+* You can use the app not only with Microbit but also with other microcontroller systems.
 
-### ダウンロードの仕方
+### How to download
 
-* 「[https://github.com/healthywalk/Serial_Terminal_plus](https://github.com/healthywalk/Serial_Terminal_plus)」にアクセスします。
-* 「code」という緑色のボタンから「Download Zip」を選びます。
-* 「Serial_Terminal_plus-main.zip」がダウンロードされるので解凍します。
-* Serial_Terminal_plus-main\Serial_Terminal_plus\bin\Release に「Serial_Terminal_plus.exe」が見つかります。
-* 「Serial_Terminal_plus.exe」を都合の良いところに置き，ダブルクリックで起動できます。
+* Open the URL https://github.com/healthywalk/Serial_Terminal_plus](https://github.com/healthywalk/Serial_Terminal_plus)
+* Select "Download Zip" from the green button labeled "code".
+* "Serial_Terminal_plus-main.zip" will be downloaded, so unzip it.
+* You will find "Serial_Terminal_plus.exe" in Serial_Terminal_plus-main \ Serial_Terminal_plus \ bin \ Release.
+* You can put "Serial_Terminal_plus.exe" in a convenient place and start it by double-clicking.
 
+### How to use
+
+* Connect the Microbit and your Windows PC with a USB cable in the same way as when creating a program with MakeCode.
+* If an application that performs serial communication such as MakeCode is open, close it.
+* On the Microbit, run a program that uses serial transmission and serial reception.
+* Open "Serial Terminal plus".
+* Check the serial port and other settings and press "Connect".
+* Enter an appropriate character string (alphanumeric characters) in "Text to Send" and press the "Send" button to send the character string to Microbit.
+* "Text Received" displays the received string from the Microbit is displayed.
+* When you press the "Save" button, you can save the contents of "Text Received" at that time in a text file.
+* To register a character string in a custom button, Shift + Click the button you want to register. Up to 36 can be used.
+* To exit, press the "Disconnect" button and then the exit button on the upper right.
