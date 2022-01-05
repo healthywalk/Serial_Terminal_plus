@@ -52,6 +52,10 @@ namespace Serial_Terminal_plus
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.checkBoxCleartext = new System.Windows.Forms.CheckBox();
+            this.buttonsavebuttons = new System.Windows.Forms.Button();
+            this.buttonloadbuttons = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // cmbPortName
@@ -128,14 +132,14 @@ namespace Serial_Terminal_plus
             this.tboxTextToSend.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tboxTextToSend.Location = new System.Drawing.Point(12, 77);
             this.tboxTextToSend.Name = "tboxTextToSend";
-            this.tboxTextToSend.Size = new System.Drawing.Size(761, 22);
+            this.tboxTextToSend.Size = new System.Drawing.Size(708, 22);
             this.tboxTextToSend.TabIndex = 8;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(780, 65);
+            this.btnSend.Location = new System.Drawing.Point(740, 65);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(77, 34);
+            this.btnSend.Size = new System.Drawing.Size(119, 34);
             this.btnSend.TabIndex = 9;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -209,17 +213,17 @@ namespace Serial_Terminal_plus
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 34);
             this.btnSave.TabIndex = 17;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save log";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(685, 260);
+            this.btnClear.Location = new System.Drawing.Point(647, 260);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(61, 34);
+            this.btnClear.Size = new System.Drawing.Size(99, 34);
             this.btnClear.TabIndex = 18;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Clear log";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -232,11 +236,50 @@ namespace Serial_Terminal_plus
             this.label7.TabIndex = 19;
             this.label7.Text = "Shift + Click to set the button";
             // 
+            // checkBoxCleartext
+            // 
+            this.checkBoxCleartext.AutoSize = true;
+            this.checkBoxCleartext.Location = new System.Drawing.Point(186, 60);
+            this.checkBoxCleartext.Name = "checkBoxCleartext";
+            this.checkBoxCleartext.Size = new System.Drawing.Size(152, 16);
+            this.checkBoxCleartext.TabIndex = 20;
+            this.checkBoxCleartext.Text = "Clear Text After Sending";
+            this.checkBoxCleartext.UseVisualStyleBackColor = true;
+            this.checkBoxCleartext.CheckedChanged += new System.EventHandler(this.checkBoxCleartext_CheckedChanged);
+            // 
+            // buttonsavebuttons
+            // 
+            this.buttonsavebuttons.Location = new System.Drawing.Point(597, 10);
+            this.buttonsavebuttons.Name = "buttonsavebuttons";
+            this.buttonsavebuttons.Size = new System.Drawing.Size(134, 23);
+            this.buttonsavebuttons.TabIndex = 21;
+            this.buttonsavebuttons.Text = "Save Button Setting";
+            this.buttonsavebuttons.UseVisualStyleBackColor = true;
+            this.buttonsavebuttons.Click += new System.EventHandler(this.buttonsavebuttons_Click);
+            // 
+            // buttonloadbuttons
+            // 
+            this.buttonloadbuttons.Location = new System.Drawing.Point(597, 31);
+            this.buttonloadbuttons.Name = "buttonloadbuttons";
+            this.buttonloadbuttons.Size = new System.Drawing.Size(134, 23);
+            this.buttonloadbuttons.TabIndex = 22;
+            this.buttonloadbuttons.Text = "Load Button Setting";
+            this.buttonloadbuttons.UseVisualStyleBackColor = true;
+            this.buttonloadbuttons.Click += new System.EventHandler(this.buttonloadbuttons_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 714);
+            this.Controls.Add(this.buttonloadbuttons);
+            this.Controls.Add(this.buttonsavebuttons);
+            this.Controls.Add(this.checkBoxCleartext);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
@@ -287,6 +330,10 @@ namespace Serial_Terminal_plus
         private Button btnSave;
         private Button btnClear;
         private Label label7;
+        private CheckBox checkBoxCleartext;
+        private Button buttonsavebuttons;
+        private Button buttonloadbuttons;
+        private Timer timer1;
     }
 }
 

@@ -72,6 +72,8 @@ namespace Serial_Terminal_plus
 
             //カスタムボタン
             generateCustumButton();
+
+            timer1.Enabled = true;
         }
 
         private void connect_Click(object sender, EventArgs e)
@@ -83,6 +85,8 @@ namespace Serial_Terminal_plus
 
                 //! ボタンの表示を[切断]から[接続]に変える.
                 btnConnect.Text = "Connect";
+
+                timer1.Enabled = true;
             }
             else
             {
@@ -115,10 +119,15 @@ namespace Serial_Terminal_plus
 
                     //! ボタンの表示を[接続]から[切断]に変える.
                     btnConnect.Text = "Disconnect";
+                    timer1.Enabled = false;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    //! ボタンの表示を[切断]から[接続]に変える.
+                    btnConnect.Text = "Connect";
+
+                    timer1.Enabled = true;
                 }
 
             }
@@ -137,6 +146,10 @@ namespace Serial_Terminal_plus
             if (serialPort1.IsOpen == false)
             {
                 MessageBox.Show("No Connection!!");
+                //! ボタンの表示を[切断]から[接続]に変える.
+                btnConnect.Text = "Connect";
+
+                timer1.Enabled = true;
                 return;
             }
 
@@ -164,11 +177,21 @@ namespace Serial_Terminal_plus
                 }
 
                 //! 送信データを入力するテキストボックスをクリアする.
-                tboxTextToSend.Clear();
+                if (checkBoxCleartext.Checked == true)
+                    tboxTextToSend.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (serialPort1.IsOpen == true)
+                {
+                    //! シリアルポートをクローズする.
+                    serialPort1.Close();
+                }
+                //! ボタンの表示を[切断]から[接続]に変える.
+                btnConnect.Text = "Connect";
+
+                timer1.Enabled = true;
             }
 
         }
@@ -179,6 +202,10 @@ namespace Serial_Terminal_plus
             if (serialPort1.IsOpen == false)
             {
                 MessageBox.Show("No Connection!!");
+                //! ボタンの表示を[切断]から[接続]に変える.
+                btnConnect.Text = "Connect";
+
+                timer1.Enabled = true;
                 return;
             }
             try
@@ -192,6 +219,15 @@ namespace Serial_Terminal_plus
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                if (serialPort1.IsOpen == true)
+                {
+                    //! シリアルポートをクローズする.
+                    serialPort1.Close();
+                }
+                //! ボタンの表示を[切断]から[接続]に変える.
+                btnConnect.Text = "Connect";
+
+                timer1.Enabled = true;
             }
         }
 
@@ -383,6 +419,16 @@ namespace Serial_Terminal_plus
             {
                 Properties.Settings.Default.comandstring += '\t' + this.custumbuttons[i].Text;
             }
+            Properties.Settings.Default.stringtosend = this.stringtosend[0];
+            for (int i = 1; i < 36; i++)
+            {
+                Properties.Settings.Default.stringtosend += '\t' + this.stringtosend[i];
+            }
+            Properties.Settings.Default.justinsert = this.justinsert[0];
+            for (int i = 1; i < 36; i++)
+            {
+                Properties.Settings.Default.justinsert += '\t' + this.justinsert[i];
+            }
             Properties.Settings.Default.Save();
             //MessageBox.Show("アプリケーションが終了されます。");
 
@@ -391,16 +437,49 @@ namespace Serial_Terminal_plus
         }
 
         private Button[] custumbuttons;
-        private const String Notsetyet = "Not set yet";
+        private string[] stringtosend;
+        private string[] justinsert;
+        private const String Notsetyet = "undefined";
+        private const String Notsetyet_old = "Not set yet";
         private void generateCustumButton()
         {
             this.custumbuttons = new Button[36];
-            String[] buttontext = new string[36];
+            String[] buttontext = new string[36]; //これは更新されない
+            this.stringtosend = new string[36];
+            this.justinsert = new string[36];
+
             Boolean canrestore = false;
-            if (Properties.Settings.Default.comandstring != "none") {
+            if (Properties.Settings.Default.comandstring != "none")
+            {
                 canrestore = true;
                 buttontext = Properties.Settings.Default.comandstring.Split('\t');
 
+            }
+            if (Properties.Settings.Default.stringtosend != "none")
+            {
+                stringtosend = Properties.Settings.Default.stringtosend.Split('\t');
+            }
+            else if (Properties.Settings.Default.comandstring != "none")
+            {
+                stringtosend = Properties.Settings.Default.comandstring.Split('\t');
+            }
+            else
+            {
+                for (int i0 = 0; i0 < custumbuttons.Length; i0++)
+                {
+                    stringtosend[i0] = "";
+                }
+            }
+            if (Properties.Settings.Default.justinsert != "none")
+            {
+                justinsert = Properties.Settings.Default.justinsert.Split('\t');
+            }
+            else
+            {
+                for (int i0 = 0; i0 < custumbuttons.Length; i0++)
+                {
+                    justinsert[i0] = "yes";
+                }
             }
             for (int i0 = 0; i0 < custumbuttons.Length; i0++)
             {
@@ -423,32 +502,153 @@ namespace Serial_Terminal_plus
                 this.custumbuttons[i0].Height = 35;
                 this.custumbuttons[i0].Width = 65;
                 this.custumbuttons[i0].Left = this.tboxReceivedText.Left + 69 * i + (i / 4) * 9 - 3;
+                this.custumbuttons[i0].Tag = i0;
 
                 //コントロールをフォームに追加
                 this.Controls.Add(this.custumbuttons[i0]);
                 this.custumbuttons[i0].Click += new System.EventHandler(custumbtnclick);
+                this.custumbuttons[i0].MouseDown += new MouseEventHandler(Buttons_MouseDown);
             }
         }
 
         private void custumbtnclick(object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
-            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+            int no = (int)(btn.Tag);
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift || rightbutton)
             {
                 //MessageBox.Show("Shift + " + btn.Name);
-                String tmpstr = Microsoft.VisualBasic.Interaction.InputBox("Key in command string to send.", "Command String Setting", btn.Text, 200, 100);
-                if (tmpstr != "") btn.Text = tmpstr;
+                List<object> sendList = new List<object>();
+                sendList.Add(this.custumbuttons[no].Text);
+                sendList.Add(this.stringtosend[no]);
+                sendList.Add(this.justinsert[no]);
+                List<object> resultObjs = Form2.ShowForm2(sendList);
+                if ((string)resultObjs[0] != "")
+                {
+                    this.custumbuttons[no].Text = (string)resultObjs[0];
+                }
+                else
+                {
+                    this.custumbuttons[no].Text = Notsetyet;
+                }
+                this.stringtosend[no] = (string)resultObjs[1];
+                this.justinsert[no] = (string)resultObjs[2];
             }
-            else if (btn.Text != Notsetyet)
+            else if (btn.Text != Notsetyet && btn.Text != Notsetyet_old && !rightbutton)
             {
                 //MessageBox.Show(btn.Text);
-                sendString(btn.Text);
+                if (this.justinsert[no] == "yes")
+                {
+                    tboxTextToSend.Text = btn.Text;
+                }
+                else
+                {
+                    sendString(btn.Text);
+                }
+             }
+             rightbutton = false;
+        }
+
+        private void checkBoxCleartext_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonsavebuttons_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.FileName = "SerialTerminalPlus_buttons";
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //MessageBox.Show(saveFileDialog1.FileName);
+                String mystring = "";
+                for (int i=0; i< custumbuttons.Length; i++)
+                {
+                    mystring += ""+i+","+ this.custumbuttons[i].Text+","+ this.stringtosend[i]+","+ this.justinsert[i]+"\n";
+                }
+                File.WriteAllText(saveFileDialog1.FileName, mystring);
+            }
+
+        }
+
+        private void buttonloadbuttons_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog loadFileDialog1 = new OpenFileDialog();
+
+            loadFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            loadFileDialog1.FilterIndex = 1;
+            loadFileDialog1.FileName = "SerialTerminalPlus_buttons";
+            loadFileDialog1.RestoreDirectory = true;
+
+            if (loadFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] txtArray = File.ReadAllLines(loadFileDialog1.FileName);
+                int index = 0;
+                String[] text;
+                foreach (var line in txtArray)
+                {
+                    text = line.Split(',');
+                    try
+                    {
+                        index = Int32.Parse(text[0]);
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show(text[0]);
+                    }
+
+                    this.custumbuttons[index].Text = text[1];
+                    this.stringtosend[index] = text[2];
+                    this.justinsert[index] = text[3];
+                }
+            }
+
+        }
+
+        private bool rightbutton;
+        private void Buttons_MouseDown(object sender, MouseEventArgs e)
+        {
+            //MessageBox.Show("right button");
+            rightbutton = false;
+            if (e.Button == MouseButtons.Right)
+            {
+                rightbutton = true;
+                custumbtnclick(sender, (EventArgs)e);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //! 利用可能なシリアルポート名の配列を取得する.
+            this.cmbPortName.Items.Clear();
+            string[] PortList = System.IO.Ports.SerialPort.GetPortNames();
+
+            //! シリアルポート名をコンボボックスにセットする.
+            //this.cmbPortName.Items.Add("Hello");
+            foreach (string portName in PortList)
+            {
+                serialPort1.PortName = portName;
+                try
+                {
+                    //! シリアルポートをオープンする.
+                    serialPort1.Open();
+                    serialPort1.Close();
+                    this.cmbPortName.Items.Add(portName);
+                }
+                catch (Exception ex)
+                {
+                }
+
+            }
+            if (this.cmbPortName.Items.Count > 0)
+            {
+                this.cmbPortName.SelectedIndex = this.cmbPortName.Items.Count - 1;
             }
         }
     }
 }
-
-/*
- * if (checkBox2.Checked == true)
- * int index = cmbBaudRate.SelectedIndex;
- */

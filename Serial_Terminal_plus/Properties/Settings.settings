@@ -20,5 +20,11 @@
     <Setting Name="comandstring" Type="System.String" Scope="User">
       <Value Profile="(Default)">none</Value>
     </Setting>
+    <Setting Name="stringtosend" Type="System.String" Scope="User">
+      <Value Profile="(Default)">none</Value>
+    </Setting>
+    <Setting Name="justinsert" Type="System.String" Scope="User">
+      <Value Profile="(Default)">none</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
