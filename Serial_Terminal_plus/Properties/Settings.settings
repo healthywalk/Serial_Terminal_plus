@@ -6,7 +6,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="linbreakS" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="linebreakR" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
@@ -17,10 +17,10 @@
     <Setting Name="timestamp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="comandstring" Type="System.String" Scope="User">
+    <Setting Name="commandstring" Type="System.String" Scope="User">
       <Value Profile="(Default)">none</Value>
     </Setting>
-    <Setting Name="stringtosend" Type="System.String" Scope="User">
+    <Setting Name="stringforsend" Type="System.String" Scope="User">
       <Value Profile="(Default)">none</Value>
     </Setting>
     <Setting Name="justinsert" Type="System.String" Scope="User">

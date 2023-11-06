@@ -29,6 +29,7 @@ namespace Serial_Terminal_plus
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,7 +42,7 @@ namespace Serial_Terminal_plus
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(296, 84);
+            this.buttonOK.Location = new System.Drawing.Point(307, 84);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 0;
@@ -51,7 +52,7 @@ namespace Serial_Terminal_plus
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(215, 84);
+            this.buttonCancel.Location = new System.Drawing.Point(226, 84);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 1;
@@ -61,7 +62,7 @@ namespace Serial_Terminal_plus
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 9);
+            this.textBox1.Location = new System.Drawing.Point(111, 9);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(271, 19);
             this.textBox1.TabIndex = 2;
@@ -69,16 +70,16 @@ namespace Serial_Terminal_plus
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(295, 62);
+            this.checkBox1.Location = new System.Drawing.Point(111, 62);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 16);
+            this.checkBox1.Size = new System.Drawing.Size(80, 16);
             this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "just insert";
+            this.checkBox1.Text = "Just Insert";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(100, 37);
+            this.textBox2.Location = new System.Drawing.Point(111, 37);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(271, 19);
             this.textBox2.TabIndex = 4;
@@ -97,9 +98,9 @@ namespace Serial_Terminal_plus
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.Size = new System.Drawing.Size(92, 12);
             this.label2.TabIndex = 6;
-            this.label2.Text = "String to send";
+            this.label2.Text = "String to be Sent";
             // 
             // buttonClaer
             // 
@@ -115,7 +116,7 @@ namespace Serial_Terminal_plus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 119);
+            this.ClientSize = new System.Drawing.Size(389, 112);
             this.Controls.Add(this.buttonClaer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -124,6 +125,10 @@ namespace Serial_Terminal_plus
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form2";
             this.Text = "Setting Name and String";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);

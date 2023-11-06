@@ -80,9 +80,9 @@ namespace Serial_Terminal_plus
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(754, 12);
+            this.btnConnect.Location = new System.Drawing.Point(740, 12);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(105, 34);
+            this.btnConnect.Size = new System.Drawing.Size(119, 34);
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@ namespace Serial_Terminal_plus
             // cmbLBSend
             // 
             this.cmbLBSend.FormattingEnabled = true;
-            this.cmbLBSend.Location = new System.Drawing.Point(304, 27);
+            this.cmbLBSend.Location = new System.Drawing.Point(287, 27);
             this.cmbLBSend.Name = "cmbLBSend";
             this.cmbLBSend.Size = new System.Drawing.Size(72, 20);
             this.cmbLBSend.TabIndex = 11;
@@ -166,25 +166,25 @@ namespace Serial_Terminal_plus
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(302, 12);
+            this.label3.Location = new System.Drawing.Point(285, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 12);
+            this.label3.Size = new System.Drawing.Size(126, 12);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Line Breaks in Sending";
+            this.label3.Text = "Line Breaks on Sending";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(446, 12);
+            this.label4.Location = new System.Drawing.Point(429, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 12);
+            this.label4.Size = new System.Drawing.Size(136, 12);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Line Breaks in Receiving";
+            this.label4.Text = "Line Breaks on Receiving";
             // 
             // cmbLBReceive
             // 
             this.cmbLBReceive.FormattingEnabled = true;
-            this.cmbLBReceive.Location = new System.Drawing.Point(448, 27);
+            this.cmbLBReceive.Location = new System.Drawing.Point(431, 27);
             this.cmbLBReceive.Name = "cmbLBReceive";
             this.cmbLBReceive.Size = new System.Drawing.Size(72, 20);
             this.cmbLBReceive.TabIndex = 14;
@@ -194,9 +194,9 @@ namespace Serial_Terminal_plus
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 12);
+            this.label5.Size = new System.Drawing.Size(85, 12);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Text to Send";
+            this.label5.Text = "Text to be Sent";
             // 
             // label6
             // 
@@ -232,9 +232,9 @@ namespace Serial_Terminal_plus
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(13, 107);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(159, 12);
+            this.label7.Size = new System.Drawing.Size(296, 12);
             this.label7.TabIndex = 19;
-            this.label7.Text = "Shift + Click to set the button";
+            this.label7.Text = "Custom Buttons (Shift+click or right-click to customize.)";
             // 
             // checkBoxCleartext
             // 
@@ -249,21 +249,21 @@ namespace Serial_Terminal_plus
             // 
             // buttonsavebuttons
             // 
-            this.buttonsavebuttons.Location = new System.Drawing.Point(597, 10);
+            this.buttonsavebuttons.Location = new System.Drawing.Point(580, 10);
             this.buttonsavebuttons.Name = "buttonsavebuttons";
             this.buttonsavebuttons.Size = new System.Drawing.Size(134, 23);
             this.buttonsavebuttons.TabIndex = 21;
-            this.buttonsavebuttons.Text = "Save Button Setting";
+            this.buttonsavebuttons.Text = "Export Button Setting";
             this.buttonsavebuttons.UseVisualStyleBackColor = true;
             this.buttonsavebuttons.Click += new System.EventHandler(this.buttonsavebuttons_Click);
             // 
             // buttonloadbuttons
             // 
-            this.buttonloadbuttons.Location = new System.Drawing.Point(597, 31);
+            this.buttonloadbuttons.Location = new System.Drawing.Point(580, 31);
             this.buttonloadbuttons.Name = "buttonloadbuttons";
             this.buttonloadbuttons.Size = new System.Drawing.Size(134, 23);
             this.buttonloadbuttons.TabIndex = 22;
-            this.buttonloadbuttons.Text = "Load Button Setting";
+            this.buttonloadbuttons.Text = "Import Button Setting";
             this.buttonloadbuttons.UseVisualStyleBackColor = true;
             this.buttonloadbuttons.Click += new System.EventHandler(this.buttonloadbuttons_Click);
             // 
@@ -299,6 +299,7 @@ namespace Serial_Terminal_plus
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.cmbBaudRate);
             this.Controls.Add(this.cmbPortName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";

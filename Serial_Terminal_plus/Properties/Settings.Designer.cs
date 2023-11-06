@@ -37,7 +37,7 @@ namespace Serial_Terminal_plus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int linbreakS {
             get {
                 return ((int)(this["linbreakS"]));
@@ -86,24 +86,24 @@ namespace Serial_Terminal_plus.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("none")]
-        public string comandstring {
+        public string commandstring {
             get {
-                return ((string)(this["comandstring"]));
+                return ((string)(this["commandstring"]));
             }
             set {
-                this["comandstring"] = value;
+                this["commandstring"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("none")]
-        public string stringtosend {
+        public string stringforsend {
             get {
-                return ((string)(this["stringtosend"]));
+                return ((string)(this["stringforsend"]));
             }
             set {
-                this["stringtosend"] = value;
+                this["stringforsend"] = value;
             }
         }
         

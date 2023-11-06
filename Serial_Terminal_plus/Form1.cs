@@ -133,7 +133,7 @@ namespace Serial_Terminal_plus
             }
         }
 
-        private String[] linebreaks = { "\r", "\n", "\r\n" };
+        private readonly String[] linebreaks = { "\r", "\n", "\r\n" };
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -337,11 +337,14 @@ namespace Serial_Terminal_plus
                         }
                         else if (text.Substring(text.Length - 1, 1) == "\n")
                         {
-                            text = text.Substring(0, text.Length - 2);
-                            text = text.Replace("\r\n", "\r\n" + getnowstring() + ": ") + "\r\n";
-                            tboxReceivedText.AppendText(text);
-                            atBeginningOfLine = true;
-                            hasCarry = false;
+                            if (2 <= text.Length)
+                            {
+                                text = text.Substring(0, text.Length - 2);
+                                text = text.Replace("\r\n", "\r\n" + getnowstring() + ": ") + "\r\n";
+                                tboxReceivedText.AppendText(text);
+                                atBeginningOfLine = true;
+                                hasCarry = false;
+                            }
                         }
                         else
                         {
@@ -381,12 +384,13 @@ namespace Serial_Terminal_plus
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.FileName = "SerialTerminalPlus" + getnowstringforfile();
-            saveFileDialog1.RestoreDirectory = true;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                FilterIndex = 1,
+                FileName = "SerialTerminalPlus" + getnowstringforfile(),
+                RestoreDirectory = true
+            };
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -414,15 +418,15 @@ namespace Serial_Terminal_plus
             Properties.Settings.Default.linebreakR = this.cmbLBReceive.SelectedIndex;
             Properties.Settings.Default.localecho = cboxLocalEcho.Checked;
             Properties.Settings.Default.timestamp = cboxTimeStamp.Checked;
-            Properties.Settings.Default.comandstring = this.custumbuttons[0].Text;
+            Properties.Settings.Default.commandstring = this.custumbuttons[0].Text;
             for (int i = 1; i < 36; i++)
             {
-                Properties.Settings.Default.comandstring += '\t' + this.custumbuttons[i].Text;
+                Properties.Settings.Default.commandstring += '\t' + this.custumbuttons[i].Text;
             }
-            Properties.Settings.Default.stringtosend = this.stringtosend[0];
+            Properties.Settings.Default.stringforsend = this.stringtobesent[0];
             for (int i = 1; i < 36; i++)
             {
-                Properties.Settings.Default.stringtosend += '\t' + this.stringtosend[i];
+                Properties.Settings.Default.stringforsend += '\t' + this.stringtobesent[i];
             }
             Properties.Settings.Default.justinsert = this.justinsert[0];
             for (int i = 1; i < 36; i++)
@@ -437,7 +441,7 @@ namespace Serial_Terminal_plus
         }
 
         private Button[] custumbuttons;
-        private string[] stringtosend;
+        private string[] stringtobesent;
         private string[] justinsert;
         private const String Notsetyet = "undefined";
         private const String Notsetyet_old = "Not set yet";
@@ -445,29 +449,25 @@ namespace Serial_Terminal_plus
         {
             this.custumbuttons = new Button[36];
             String[] buttontext = new string[36]; //これは更新されない
-            this.stringtosend = new string[36];
+            this.stringtobesent = new string[36];
             this.justinsert = new string[36];
 
             Boolean canrestore = false;
-            if (Properties.Settings.Default.comandstring != "none")
+            if (Properties.Settings.Default.commandstring != "none")
             {
                 canrestore = true;
-                buttontext = Properties.Settings.Default.comandstring.Split('\t');
+                buttontext = Properties.Settings.Default.commandstring.Split('\t');
 
             }
-            if (Properties.Settings.Default.stringtosend != "none")
+            if (Properties.Settings.Default.stringforsend != "none")
             {
-                stringtosend = Properties.Settings.Default.stringtosend.Split('\t');
+                stringtobesent = Properties.Settings.Default.stringforsend.Split('\t');
             }
-            else if (Properties.Settings.Default.comandstring != "none")
-            {
-                stringtosend = Properties.Settings.Default.comandstring.Split('\t');
-            }
-            else
+           else
             {
                 for (int i0 = 0; i0 < custumbuttons.Length; i0++)
                 {
-                    stringtosend[i0] = "";
+                    stringtobesent[i0] = "";
                 }
             }
             if (Properties.Settings.Default.justinsert != "none")
@@ -520,7 +520,7 @@ namespace Serial_Terminal_plus
                 //MessageBox.Show("Shift + " + btn.Name);
                 List<object> sendList = new List<object>();
                 sendList.Add(this.custumbuttons[no].Text);
-                sendList.Add(this.stringtosend[no]);
+                sendList.Add(this.stringtobesent[no]);
                 sendList.Add(this.justinsert[no]);
                 List<object> resultObjs = Form2.ShowForm2(sendList);
                 if ((string)resultObjs[0] != "")
@@ -531,7 +531,7 @@ namespace Serial_Terminal_plus
                 {
                     this.custumbuttons[no].Text = Notsetyet;
                 }
-                this.stringtosend[no] = (string)resultObjs[1];
+                this.stringtobesent[no] = (string)resultObjs[1];
                 this.justinsert[no] = (string)resultObjs[2];
             }
             else if (btn.Text != Notsetyet && btn.Text != Notsetyet_old && !rightbutton)
@@ -539,11 +539,11 @@ namespace Serial_Terminal_plus
                 //MessageBox.Show(btn.Text);
                 if (this.justinsert[no] == "yes")
                 {
-                    tboxTextToSend.Text = btn.Text;
+                    tboxTextToSend.Text = stringtobesent[no];
                 }
                 else
                 {
-                    sendString(btn.Text);
+                    sendString(stringtobesent[no]);
                 }
              }
              rightbutton = false;
@@ -569,7 +569,7 @@ namespace Serial_Terminal_plus
                 String mystring = "";
                 for (int i=0; i< custumbuttons.Length; i++)
                 {
-                    mystring += ""+i+","+ this.custumbuttons[i].Text+","+ this.stringtosend[i]+","+ this.justinsert[i]+"\n";
+                    mystring += ""+i+","+ this.custumbuttons[i].Text+","+ this.stringtobesent[i]+","+ this.justinsert[i]+"\n";
                 }
                 File.WriteAllText(saveFileDialog1.FileName, mystring);
             }
@@ -603,7 +603,7 @@ namespace Serial_Terminal_plus
                     }
 
                     this.custumbuttons[index].Text = text[1];
-                    this.stringtosend[index] = text[2];
+                    this.stringtobesent[index] = text[2];
                     this.justinsert[index] = text[3];
                 }
             }
@@ -642,6 +642,7 @@ namespace Serial_Terminal_plus
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex);
                 }
 
             }

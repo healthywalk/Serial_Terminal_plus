@@ -13,7 +13,7 @@ namespace Serial_Terminal_plus
     public partial class Form2 : Form
     {
         //Form1から受け取ったオブジェクト配列
-        private List<object> argObjs = new List<object>();
+        private readonly List<object> argObjs = new List<object>();
         //Form1へ返す戻り値用オブジェクト配列
         public List<object> resultObjs = new List<object>();
 
