@@ -12,7 +12,7 @@ You can use this app instead of the terminal emulator "Tera Term".
 
 ### Convenient usage
 
-* * This application was initially created for communication between a Windows PC and Microbit. However, it can be used for serial communication with many microcomputers.
+* This application was initially created for communication between a Windows PC and Microbit. However, it can be used for serial communication with many microcomputers.
 * This is useful for microcomputer program developers to predetermine multiple commands and have Microbit perform the default behavior for those commands. It will be like a remote control operation.
 
 ### How to download
@@ -35,4 +35,3 @@ You can use this app instead of the terminal emulator "Tera Term".
 * When you press the "Save" button, you can save the contents of "Text Received" at that time in a text file.
 * To register a character string in a custom button, Shift + Click the button you want to register. Up to 36 can be used.
 * To exit, press the "Disconnect" button and then the exit button on the upper right.
-# Serial_Terminal_plus
