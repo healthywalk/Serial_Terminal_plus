@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Serial_Terminal_plus
 {
     public partial class Form1 : Form
@@ -428,6 +429,7 @@ namespace Serial_Terminal_plus
             {
                 Properties.Settings.Default.stringforsend += '\t' + this.stringtobesent[i];
             }
+            Properties.Settings.Default.stringforsend += "\tdummy";
             Properties.Settings.Default.justinsert = this.justinsert[0];
             for (int i = 1; i < 36; i++)
             {
@@ -449,7 +451,7 @@ namespace Serial_Terminal_plus
         {
             this.custumbuttons = new Button[36];
             String[] buttontext = new string[36]; //これは更新されない
-            this.stringtobesent = new string[36];
+            this.stringtobesent = new string[36+1];//dummyを末尾に入れるため
             this.justinsert = new string[36];
 
             Boolean canrestore = false;
@@ -463,7 +465,7 @@ namespace Serial_Terminal_plus
             {
                 stringtobesent = Properties.Settings.Default.stringforsend.Split('\t');
             }
-           else
+            else
             {
                 for (int i0 = 0; i0 < custumbuttons.Length; i0++)
                 {
@@ -515,6 +517,9 @@ namespace Serial_Terminal_plus
         {
             Button btn = (Button)sender;
             int no = (int)(btn.Tag);
+
+            //MessageBox.Show("Number = " + no);
+
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift || rightbutton)
             {
                 //MessageBox.Show("Shift + " + btn.Name);
