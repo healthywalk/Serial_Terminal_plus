@@ -2,6 +2,7 @@
 
 ### Serial terminal app for Windows PC with custom buttons
 
+* This is an application for Windows PC.
 * Frequently used transmission strings can be registered using the customizable buttons and sent by clicking.
 * The number of buttons that can be registered is 36.
 * You can add a timestamp to the beginning of the line when receiving.
