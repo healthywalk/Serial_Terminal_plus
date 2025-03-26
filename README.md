@@ -29,10 +29,10 @@
 * On the microcomputer, run a program that uses serial transmission and serial reception.
 * Open "Serial Terminal plus".
 * Check the serial port and other settings and press "Connect".
-* Enter a suitable text string (alphanumeric characters) in the "Text to be sent" field and press the "Send" button to send the string to the microcomputer.
+* Enter a suitable text string (alphanumeric characters) in the "Text to be sent" field and press the button "Send" to send the string to the microcomputer.
 * The received string from the microcomputer is displayed in "Text Received".
-* When you press the "Save" button, you can save the contents of "Text Received" at that time in a text file.
+* When you press the button "Save", you can save the contents of "Text Received" at that time in a text file.
 * To register a character string for a custom button, Shift-click the button you want to register. Up to 36 buttons can be used.
-* To exit, press the "Disconnect" button and then the exit button on the upper right.
+* To exit, press the button "Disconnect" and then the exit button on the upper right.
 
 <img src="Serial_Terminal_plus_window.jpg" width=80%>
