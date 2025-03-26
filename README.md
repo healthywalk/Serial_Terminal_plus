@@ -33,3 +33,5 @@
 * When you press the "Save" button, you can save the contents of "Text Received" at that time in a text file.
 * To register a character string for a custom button, Shift-click the button you want to register. Up to 36 buttons can be used.
 * To exit, press the "Disconnect" button and then the exit button on the upper right.
+
+<img src="Serial_Terminal_plus_window.jpg" width=80%>
