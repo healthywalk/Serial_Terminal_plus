@@ -2,10 +2,10 @@
 
 ### Serial terminal app for Windows PC with custom buttons
 
-* This is an application for Windows PC.
+* This is a Windows PC application for communication with the microcontroller.
 * Frequently used transmission strings can be registered using the customizable buttons and sent by clicking.
 * The number of buttons that can be registered is 36.
-* You can add a timestamp to the beginning of the line when receiving.
+* A time stamp can be added to the beginning of the incoming line of text.
 * The transmitted string can be included in the received content as a local echo.
 * You can save the received contents to a text file.
 
